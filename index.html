@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership Accelerators — ANZSOG</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #2E7D6B;
+    --teal-light: #3a9b84;
+    --teal-pale: #e8f4f1;
+    --dark: #1a2e2a;
+    --mid: #4a6560;
+    --warm-white: #f9f7f4;
+    --white: #ffffff;
+    --accent: #c8a96e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--dark);
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+  .logo-mark span {
+    background: white;
+    border-radius: 1px;
+  }
+
+  .logo-mark span:last-child {
+    background: var(--accent);
+  }
+
+  .logo-text {
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .logo-sub {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: white; }
+  .nav-links a.active { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--teal);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--teal-light) !important; color: white !important; }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    background: var(--teal-pale);
+    padding: 12px 60px;
+    font-size: 12px;
+    color: var(--mid);
+    border-bottom: 1px solid rgba(46,125,107,0.15);
+  }
+
+  .breadcrumb a { color: var(--teal); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .breadcrumb span { margin: 0 8px; color: var(--mid); }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    padding: 72px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,125,107,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 200px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--teal);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    max-width: 680px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    position: relative;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    position: relative;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: white; border-color: white; }
+
+  /* INTRO STRIP */
+  .intro-strip {
+    background: var(--teal);
+    padding: 28px 60px;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .intro-strip p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 700px;
+    line-height: 1.65;
+  }
+
+  .intro-strip p strong { color: white; font-weight: 600; }
+
+  .strip-stat {
+    flex-shrink: 0;
+    text-align: center;
+    color: white;
+    border-left: 1px solid rgba(255,255,255,0.25);
+    padding-left: 40px;
+  }
+
+  .strip-stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+
+  .strip-stat .label {
+    font-size: 12px;
+    opacity: 0.75;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* MAIN LAYOUT */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 60px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* SECTION HEADINGS */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .section-body {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  /* PROGRAM CARDS */
+  .programs-grid {
+    margin-top: 48px;
+  }
+
+  .programs-grid h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--teal-pale);
+  }
+
+  .program-card {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid rgba(46,125,107,0.12);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: start;
+    transition: box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .program-card:hover {
+    box-shadow: 0 8px 32px rgba(46,125,107,0.12);
+    transform: translateY(-2px);
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--teal-pale);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-icon svg { width: 22px; height: 22px; color: var(--teal); }
+
+  .card-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .card-content p {
+    font-size: 13.5px;
+    color: var(--mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    background: var(--teal-pale);
+    color: var(--teal);
+  }
+
+  .tag.online { background: #f0f4ff; color: #3a5fc5; }
+  .tag.blended { background: #fff8ee; color: #a07020; }
+
+  /* SIDEBAR */
+  .sidebar { position: sticky; top: 84px; }
+
+  .sidebar-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid rgba(46,125,107,0.15);
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .sidebar-card-header {
+    background: var(--dark);
+    padding: 20px 24px;
+  }
+
+  .sidebar-card-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .sidebar-card-header p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+  }
+
+  .sidebar-card-body {
+    padding: 24px;
+  }
+
+  .sidebar-card-body ul {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-card-body ul li {
+    font-size: 13.5px;
+    color: var(--mid);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--teal-pale);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 300;
+  }
+
+  .sidebar-card-body ul li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .sidebar-card-body .btn-primary {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .contact-box {
+    background: var(--teal-pale);
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid rgba(46,125,107,0.2);
+  }
+
+  .contact-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .contact-box p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 14px;
+  }
+
+  .contact-box a {
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .contact-box a:hover { text-decoration: underline; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, var(--teal-pale), transparent);
+    margin: 40px 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 48px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+  }
+
+  footer h4 {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  footer ul { list-style: none; }
+
+  footer ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 2;
+    transition: color 0.2s;
+  }
+
+  footer ul li a:hover { color: white; }
+
+  .footer-bottom {
+    background: #111d1a;
+    padding: 16px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+  }
+
+  /* CHATFUEL EMBED PLACEHOLDER */
+  .chatbot-notice {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--teal);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    max-width: 260px;
+    line-height: 1.5;
+    box-shadow: 0 8px 32px rgba(46,125,107,0.4);
+    z-index: 999;
+  }
+
+  .chatbot-notice strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .chatbot-notice code { font-size: 11px; opacity: 0.8; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <span></span><span></span><span></span><span style="background:var(--accent)"></span>
+    </div>
+    <div>
+      <div class="logo-text">ANZSOG</div>
+      <div class="logo-sub">Australia & New Zealand School of Government</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Programs</a></li>
+    <li><a href="#" class="active">Leadership Accelerators</a></li>
+    <li><a href="#">Research</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#" class="nav-cta">Enquire Now</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a>
+  <span>›</span>
+  <a href="#">Programs</a>
+  <span>›</span>
+  Leadership Accelerators
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Short Courses & Professional Learning</div>
+  <h1>Leadership <em>Accelerators</em></h1>
+  <p>Targeted, practical capability-building for public sector leaders — designed to deliver real impact fast, without stepping away from the work that matters.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Browse All Programs</a>
+    <a href="#" class="btn-ghost">Download 2026 Program Guide</a>
+  </div>
+</div>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <p>ANZSOG's <strong>Leadership Accelerators</strong> are targeted offerings that deliver rapid, practical capability-building for public servants at every career stage — from system thinking and policy design to regulatory practice and data for public value. Whether you're a new manager stepping up or a senior leader navigating exponential change, there's a program designed for where you are right now.</p>
+  <div class="strip-stat">
+    <span class="num">20+</span>
+    <span class="label">Short courses in 2026</span>
+  </div>
+  <div class="strip-stat">
+    <span class="num">100%</span>
+    <span class="label">Public sector focused</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="content">
+
+    <div class="section-label">Our Offering</div>
+    <h2 class="section-title">Built for the realities of government</h2>
+    <p class="section-body">Leadership Accelerators bring together the best of ANZSOG's academic rigour and practitioner insight in short, high-impact formats. Programs are available online, in-person and blended — designed to fit around the demands of busy public sector roles.</p>
+    <p class="section-body">Three distinct streams give you flexibility to build capability exactly where you need it most.</p>
+
+    <div class="divider"></div>
+
+    <div class="programs-grid">
+      <h2>Program Streams</h2>
+
+      <!-- PUBLIC LEADERSHIP CREDENTIALS -->
+      <div class="program-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 2L3 7l9 5 9-5-9-5zM3 17l9 5 9-5M3 12l9 5 9-5"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Public Leadership Credentials</h3>
+          <p>Structured, stackable credentials that build recognised capability in core areas of public leadership — from policy acumen and regulatory practice to data, digital and fiscal resilience. Ideal for mid-career professionals seeking formal recognition of their professional development.</p>
+          <div class="card-meta">
+            <span class="tag online">Online</span>
+            <span class="tag">Self-paced</span>
+            <span class="tag">Certificate on completion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEADERSHIP INTENSIVES -->
+      <div class="program-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Leadership Intensives</h3>
+          <p>Immersive, cohort-based programs that go deep on the complex challenges facing today's public sector leaders — from leading exponential change to influence, negotiation and transforming government organisations. Delivered in short, concentrated bursts to minimise time away from work.</p>
+          <div class="card-meta">
+            <span class="tag blended">Blended</span>
+            <span class="tag">Cohort learning</span>
+            <span class="tag">2–5 days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFESSIONAL LEARNING SERIES -->
+      <div class="program-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+            <line x1="9" y1="21" x2="9" y2="9"/>
+          </svg>
+        </div>
+        <div class="card-content">
+          <h3>Professional Learning Series</h3>
+          <p>A suite of targeted online short courses covering the issues most relevant to contemporary public servants — from AI tools and ethical practice to working with First Nations communities, data for public value and developing policy acumen. New topics added regularly in response to emerging government priorities.</p>
+          <div class="card-meta">
+            <span class="tag online">Online</span>
+            <span class="tag">Flexible enrolment</span>
+            <span class="tag">From 1 day</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-label">2026 Highlights</div>
+      <h2 class="section-title">Featured Short Courses</h2>
+      <p class="section-body">The following programs are open for enrolment now. Visit <a href="https://anzsog.edu.au" style="color:var(--teal)">anzsog.edu.au</a> for the full 2026 course calendar and current dates.</p>
+
+      <!-- FEATURED COURSES GRID -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px;">
+        <div style="background:white; border:1px solid rgba(46,125,107,0.12); border-radius:6px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Policy & Strategy</div>
+          <div style="font-weight:600; font-size:14px; color:var(--dark); margin-bottom:6px;">Developing Policy Acumen</div>
+          <div style="font-size:13px; color:var(--mid); font-weight:300;">Build sharper skills in policy analysis, design and communication.</div>
+        </div>
+        <div style="background:white; border:1px solid rgba(46,125,107,0.12); border-radius:6px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Technology & Data</div>
+          <div style="font-weight:600; font-size:14px; color:var(--dark); margin-bottom:6px;">AI Tools & Ethical Practice</div>
+          <div style="font-size:13px; color:var(--mid); font-weight:300;">Navigate AI confidently, with a clear ethical framework for government.</div>
+        </div>
+        <div style="background:white; border:1px solid rgba(46,125,107,0.12); border-radius:6px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Leadership</div>
+          <div style="font-weight:600; font-size:14px; color:var(--dark); margin-bottom:6px;">Leading Exponential Change</div>
+          <div style="font-size:13px; color:var(--mid); font-weight:300;">Lead with confidence in environments of rapid, disruptive transformation.</div>
+        </div>
+        <div style="background:white; border:1px solid rgba(46,125,107,0.12); border-radius:6px; padding:20px;">
+          <div style="font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal); margin-bottom:8px;">Finance</div>
+          <div style="font-weight:600; font-size:14px; color:var(--dark); margin-bottom:6px;">Fiscal Resilience & Optimisation</div>
+          <div style="font-size:13px; color:var(--mid); font-weight:300;">Strengthen your understanding of public financial management.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">
+        <h3>Not sure which program is right for you?</h3>
+        <p>Our virtual assistant can help you find the right fit in minutes.</p>
+      </div>
+      <div class="sidebar-card-body">
+        <ul>
+          <li>Eligibility requirements</li>
+          <li>Application process & key dates</li>
+          <li>Program structure & format</li>
+          <li>Tailored agency programs</li>
+        </ul>
+        <a href="#" class="btn-primary">Speak to an Adviser</a>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h4>Admissions Team</h4>
+      <p>For complex enquiries about recognition of prior learning, conferring university preferences or agency partnerships, contact our admissions team directly.</p>
+      <a href="mailto:engage@anzsog.edu.au">engage@anzsog.edu.au</a><br>
+      <a href="tel:1300267764" style="margin-top:6px; display:inline-block;">1300 ANZSOG</a>
+    </div>
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <h4>Programs</h4>
+    <ul>
+      <li><a href="#">Executive Master of Public Administration</a></li>
+      <li><a href="#">Executive Fellows Program</a></li>
+      <li><a href="#">Leadership Accelerators</a></li>
+      <li><a href="#">Tailored & Custom Learning</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>About ANZSOG</h4>
+    <ul>
+      <li><a href="#">Our Purpose</a></li>
+      <li><a href="#">Strategy 2030</a></li>
+      <li><a href="#">First Nations & Māori</a></li>
+      <li><a href="#">Research & Insights</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="#">engage@anzsog.edu.au</a></li>
+      <li><a href="#">1300 ANZSOG</a></li>
+      <li><a href="#">anzsog.edu.au</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Australia and New Zealand School of Government. All rights reserved.</p>
+  <p>ABN 26 101 262 527</p>
+</div>
+
+<!-- CHATFUEL EMBED PLACEHOLDER -->
+<!-- Replace this notice with your Chatfuel embed snippet once you have it from the Chatfuel dashboard -->
+<div class="chatbot-notice">
+  <strong>📋 Chatfuel Embed Goes Here</strong>
+  Replace this div with your Chatfuel embed snippet from the dashboard.<br>
+  <code>&lt;script src="chatfuel-embed..."&gt;&lt;/script&gt;</code>
+</div>
+
+</body>
+</html>
