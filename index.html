@@ -784,7 +784,20 @@
 <div class="chatbot-notice">
   <strong>📋 Chatfuel Embed Goes Here</strong>
   Replace this div with your Chatfuel embed snippet from the dashboard.<br>
-  <code>&lt;script src="chatfuel-embed..."&gt;&lt;/script&gt;</code>
+  <!--<code>&lt;script src="chatfuel-embed..."&gt;&lt;/script&gt;-->
+<code>
+<script>
+(function() {
+	var script = document.createElement('script');
+	script.dataset.bot = "6a1236f277a0bb5c2e19eb46";
+	script.dataset.zindex = "99999";
+	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+	script.async = true;
+	script.defer = true;
+	document.getElementsByTagName('head')[0].appendChild(script);
+})()
+</script>
+  </code>
 </div>
 
 </body>
